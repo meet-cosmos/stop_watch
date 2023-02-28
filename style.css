@@ -1,0 +1,43 @@
+.timerDisplay{
+    font-size: 60px;
+    margin-left: 350px;
+    margin-top: 100px;
+}
+#startTimer{
+    margin-left: 350px;
+    margin-top: 20px;
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    background-color: white;
+    border-color: green;
+    color: green;
+}
+#pauseTimer{
+    margin-left: 30px;
+    margin-top: 20px;
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    background-color: white;
+    border-color: red;
+    color: red;
+}
+#resetTimer{
+    margin-left: 30px;
+    margin-top: 20px;
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    background-color: white;
+    border-color: orange;
+    color: orange;
+}
+#cast{
+    margin-left: 30px;
+    margin-top: 20px;
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    background-color: white;
+}

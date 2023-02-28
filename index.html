@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Stop Watch
+        </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="timerDisplay">
+                00 : 00 : 00 : 000
+             </div>
+
+             <!-- <div class="buttons" id="btn"> -->
+                <button id="startTimer">Start</button>
+                <button id="pauseTimer">Pause</button>
+                <button id="resetTimer">Reset</button>
+              <!-- </div>  -->
+        </div>
+        <script>
+            document.getElementById('pauseTimer').disabled = true;
+            let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
+            let timerRef = document.querySelector('.timerDisplay');
+            let int = null;
+
+            document.getElementById('startTimer').addEventListener('click', ()=>{
+                document.getElementById('pauseTimer').disabled = false;
+                if(int!==null){
+                    clearInterval(int);
+                }
+                int = setInterval(displayTimer,10);
+            });
+            // console.log(document.getElementById('btn').firstElementChild)
+
+            document.getElementById('pauseTimer').addEventListener('click', ()=>{
+                if(document.getElementById('pauseTimer').innerText === 'Pause'){
+                    document.getElementById('pauseTimer').innerText = 'Continue'
+                    document.getElementById('startTimer').disabled = true;
+                    console.log("pause clicked");
+                    clearInterval(int);
+                }
+                else if(document.getElementById('pauseTimer').innerText === 'Continue'){
+                    document.getElementById('pauseTimer').innerText = 'Pause';
+                    int = setInterval(displayTimer,10);
+                    document.getElementById('startTimer').disabled = true;
+                    console.log("continue is not clicked")
+                }
+                
+            });
+
+            // document.getElementById('ContinueTimer').addEventListener('click', ()=>{
+            //     if(document.getElementById('ContinueTimer').innerText === 'Continue'){
+            //         document.getElementById('ContinueTimer').innerHTML = `<button id="pauseTimer">Pause</button>`
+            //     }
+            //     clearInterval(int);
+            // })
+            document.getElementById('resetTimer').addEventListener('click', ()=>{
+                clearInterval(int);
+                document.getElementById('startTimer').disabled = false;
+                [milliseconds,seconds,minutes,hours] = [0,0,0,0];
+                timerRef.innerHTML = '00 : 00 : 00 : 000 ';
+            });
+
+            function displayTimer(){
+                milliseconds+=10;
+                if(milliseconds == 1000){
+                    milliseconds = 0;
+                    seconds++;
+                    if(seconds == 60){
+                        seconds = 0;
+                        minutes++;
+                        if(minutes == 60){
+                            minutes = 0;
+                            hours++;
+                        }
+                    }
+                }
+
+            let h = hours < 10 ? "0" + hours : hours;
+            let m = minutes < 10 ? "0" + minutes : minutes;
+            let s = seconds < 10 ? "0" + seconds : seconds;
+            let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+
+            timerRef.innerHTML = ` ${h} : ${m} : ${s} : ${ms}`;
+            }
+
+        </script>
+    </body>
+</html>
